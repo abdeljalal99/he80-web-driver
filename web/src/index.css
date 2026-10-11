@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Design tokens, light and dark in one place: light-dark(light, dark) follows `color-scheme` below.
+   Light = brushed-aluminium plate; actuation depth runs shallow (cyan) → deep (indigo). */
+@theme {
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --color-plate: light-dark(#e9ecef, #1a2029);
+  --color-ink: light-dark(#1e2633, #e4e8ee);
+  --color-mute: light-dark(#5b6575, #96a0b0);
+  --color-line: light-dark(#cdd2d8, #333c4a);
+  --color-cap: light-dark(#ffffff, #262d38);
+  --color-cap-edge: light-dark(#c3c9d1, #11151b);
+  --color-shallow: light-dark(#d3eef5, #2c4954);
+  --color-deep: light-dark(#2c3a8f, #a9b6ff);
+  --color-on-deep: light-dark(#ffffff, #10141b);
+  --color-select: light-dark(#f2a20c, #f5b23a);
+  --color-write: light-dark(#c92a2a, #ef6b6b);
+}
+
+/* Theme: follows the system unless the theme switch set data-theme on <html> (ui/theme.tsx). */
+:root { color-scheme: light dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+body {
+  background: var(--color-plate);
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Thin scrollbars in the theme colours, instead of the system's default grey bar. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+/* No spinner arrows on number boxes (the slider next to each one does that job). */
+input[type="number"] {
+  appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
